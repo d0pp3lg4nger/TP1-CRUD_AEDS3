@@ -13,16 +13,18 @@ public class Tarefa implements Registro {
     LocalDate dataCriacao;
     LocalDate dataConclusao;
     byte status;
+    byte prioridade;
 
     public Tarefa() {
-        this("", LocalDate.of(1970, 1, 1), LocalDate.of(1970, 1, 1), (byte) 0);
+        this("", LocalDate.of(1970, 1, 1), LocalDate.of(1970, 1, 1), (byte) 0, (byte) 0);
     }
 
-    public Tarefa(String n, LocalDate d, LocalDate c, byte s) {
+    public Tarefa(String n, LocalDate d, LocalDate c, byte s, byte p) {
         this.nome = n;
         this.dataCriacao = d;
         this.dataConclusao = c;
         this.status = s;
+        this.prioridade = p;
     }
 
     public void setNome(String nome) {
@@ -57,6 +59,14 @@ public class Tarefa implements Registro {
         return status;
     }
 
+    public void setPrioridade(byte prioridade) {
+        this.prioridade = prioridade;
+    }
+
+    public byte getPrioridade() {
+        return prioridade;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -74,6 +84,7 @@ public class Tarefa implements Registro {
         dos.writeInt((int)this.dataCriacao.toEpochDay());
         dos.writeInt((int)this.dataConclusao.toEpochDay());
         dos.write(this.status);
+        dos.write(this.prioridade);
 
         return baos.toByteArray();
     }
@@ -86,6 +97,7 @@ public class Tarefa implements Registro {
         this.dataCriacao = LocalDate.ofEpochDay(dis.readInt());
         this.dataConclusao = LocalDate.ofEpochDay(dis.readInt());
         this.status = dis.readByte();
+        this.prioridade = dis.readByte();
     }
 
     public String toString() {
@@ -101,12 +113,20 @@ public class Tarefa implements Registro {
         }else{
             resp += "Concluida";
         }
+        resp += "\nPrioridade.......: ";
+        if (this.status == 0) {
+            resp += "Baixa";
+        } else if(this.status == 1) {
+            resp += "Media";
+        }else{
+            resp += "Alta";
+        }
 
         return resp;
     }
 
     public int compareTo(Object p) {
-        return this.id - ((Pessoa)p).id;
+        return this.id - ((Tarefa)p).id;
     }
 
 
