@@ -26,6 +26,7 @@ public class IO {
             arqTarefas.create(t3);
 
             // Leitura dos objetos
+            System.out.println("--------- Leitura dos objetos ---------");
             t = arqTarefas.read(1);
             if(t!=null)
                 System.out.println(t);
@@ -33,6 +34,7 @@ public class IO {
                 System.out.println("Tarefa não encontrada!");
 
             // Exclusão de Tarefa
+            System.out.println("\n--------- Exclusão de Tarefa ---------");
             if(arqTarefas.delete(1))
                 System.out.println("\nTarefa 1 excluída!");
             else
@@ -47,10 +49,17 @@ public class IO {
                 System.out.println(t);
             else
                 System.out.println("Tarefa 2 não encontrada!");
+            t = arqTarefas.read(3);
+            if(t!=null)
+                System.out.println(t);
+            else
+                System.out.println("Tarefa 3 não encontrada!");
 
-            // Reorganização
-            System.out.println("\n\nReorganização do arquivo de Tarefas");
-            arqTarefas.reorganizar();
+            // Atualização de Tarefa
+            System.out.println("\n--------- Atualização de Tarefa ---------\n");
+            Tarefa t4 = new Tarefa("Dominar Constantinopla", LocalDate.of(2021, 10, 3), LocalDate.of(2021, 10, 10), (byte) 2, (byte) 2);
+            t4.setId(2);
+            arqTarefas.update(t4);
             t = arqTarefas.read(1);
             if(t!=null)
                 System.out.println(t);
