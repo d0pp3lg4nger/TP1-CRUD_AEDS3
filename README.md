@@ -1,4 +1,4 @@
-# TP1 - CRUD AEDS3
+# `TP1 - CRUD AEDS3`
 
 Este projeto implementa uma nova entidade chamada **Tarefa**, que utiliza o CRUD (Create, Read, Update, Delete) para gerenciar registros por meio de uma tabela **Hash Extensível**. A classe `IO.java` é responsável por testar o CRUD, utilizando um índice direto para acessar os registros. Abaixo está a descrição das principais classes e funcionalidades do projeto.
 
